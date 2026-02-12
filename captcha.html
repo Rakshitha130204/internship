@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Step Validation</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color:#f4f4f4;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            background:white;
+            padding:20px;
+            width:300px;
+            border-radius:8px;
+            box-shadow:0px 0px 8px rgba(0,0,0,0.1);
+        }
+
+        input{
+            width:100%;
+            padding:7px;
+            margin-top:8px;
+            margin-bottom:8px;
+            border-radius:4px;
+            border:1px solid gray;
+        }
+
+        button{
+            width:100%;
+            padding:8px;
+            background:#2d89ef;
+            border:none;
+            color:white;
+            border-radius:4px;
+            cursor:pointer;
+        }
+
+        .captcha{
+            background:#e0e0e0;
+            text-align:center;
+            padding:6px;
+            font-weight:bold;
+            letter-spacing:2px;
+            margin-top:10px;
+            border-radius:4px;
+        }
+
+        .hide{
+            display:none;
+        }
+
+        .refresh{
+            margin-top:5px;
+            font-size:12px;
+            text-align:right;
+            cursor:pointer;
+            color:blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <form id="formData">
+
+        <!-- Step 1 inputs -->
+        <input type="text" id="val1" placeholder="Enter value 1" required>
+        <input type="text" id="val2" placeholder="Enter value 2" required>
+
+        <!-- Step 2 section -->
+        <div id="stepTwo" class="hide">
+
+            <!-- Captcha display -->
+            <div class="captcha" id="captchaValue"></div>
+            <div class="refresh" onclick="createCaptcha()">Refresh Captcha</div>
+
+            <!-- User captcha input -->
+            <input type="text" id="userCaptcha" placeholder="Enter captcha">
+
+            <!-- Extra field -->
+            <input type="text" id="extraVal" placeholder="Additional field">
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+
+    const form = document.getElementById("formData");
+    const stepTwo = document.getElementById("stepTwo");
+    const captchaValue = document.getElementById("captchaValue");
+    const userCaptcha = document.getElementById("userCaptcha");
+
+    let firstTime = true;     
+    let mainCaptcha = "";     
+
+
+    
+    function createCaptcha(){
+        mainCaptcha = Math.random().toString(36).substring(2,7);
+        captchaValue.innerText = mainCaptcha;
+    }
+
+
+    
+    form.addEventListener("submit", function(event){
+
+        event.preventDefault();   
+
+        
+        if(firstTime){
+            stepTwo.classList.remove("hide");
+            createCaptcha();
+            firstTime = false;
+        }
+
+        
+        else{
+
+            if(userCaptcha.value === mainCaptcha){
+
+                
+                const data = {
+                    value1 : document.getElementById("val1").value,
+                    value2 : document.getElementById("val2").value,
+                    extra  : document.getElementById("extraVal").value
+                };
+
+                console.log("Submitted Data:", data);
+
+                alert("Submitted successfully");
+            }
+            else{
+                alert("Invalid captcha");
+                createCaptcha();  
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
