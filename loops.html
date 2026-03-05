@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Loops and Conditions Example</title>
+    <style>
+        body{
+            font-family: Arial;
+            margin: 20px;
+        }
+        h2{
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>JavaScript Loops and Conditional Statements</h1>
+
+<div id="result"></div>
+
+<script>
+
+// selecting the div where output will be printed
+let outputArea = document.getElementById("result");
+
+// simple function to print text on the page
+function show(text){
+    outputArea.innerHTML += "<p>" + text + "</p>";
+}
+
+/* ----------- FOR LOOP ----------- */
+show("<h2>For Loop</h2>");
+
+for(let i = 1; i <= 5; i++){
+    show("Current value of i is: " + i);
+}
+
+
+/* ----------- WHILE LOOP ----------- */
+show("<h2>While Loop</h2>");
+
+let count = 1;
+
+while(count <= 5){
+    show("While loop running: " + count);
+    count++;
+}
+
+
+/* ----------- DO WHILE LOOP ----------- */
+show("<h2>Do While Loop</h2>");
+
+let num = 1;
+
+do{
+    show("Do while iteration: " + num);
+    num++;
+}while(num <= 5);
+
+
+/* ----------- FOR IN LOOP ----------- */
+show("<h2>For...in Loop</h2>");
+
+let student = {
+    name: "Rakshitha",
+    branch: "CSE",
+    year: "Final Year"
+};
+
+for(let key in student){
+    show(key + " : " + student[key]);
+}
+
+
+/* ----------- FOR OF LOOP ----------- */
+show("<h2>For...of Loop</h2>");
+
+let numbers = [5,10,15,20];
+
+for(let value of numbers){
+    show("Array value: " + value);
+}
+
+
+/* ----------- IF CONDITION ----------- */
+show("<h2>If Condition</h2>");
+
+let marks = 65;
+
+if(marks >= 50){
+    show("Student passed the exam");
+}
+
+
+/* ----------- IF ELSE ----------- */
+show("<h2>If Else Condition</h2>");
+
+let age = 17;
+
+if(age >= 18){
+    show("Person is eligible to vote");
+}else{
+    show("Person is not eligible to vote");
+}
+
+
+/* ----------- IF ELSE IF ----------- */
+show("<h2>If Else If Condition</h2>");
+
+let score = 82;
+
+if(score >= 90){
+    show("Grade A");
+}
+else if(score >= 75){
+    show("Grade B");
+}
+else if(score >= 50){
+    show("Grade C");
+}
+else{
+    show("Fail");
+}
+
+
+/* ----------- SWITCH CASE ----------- */
+show("<h2>Switch Statement</h2>");
+
+let day = 2;
+
+switch(day){
+    case 1:
+        show("Today is Monday");
+        break;
+
+    case 2:
+        show("Today is Tuesday");
+        break;
+
+    case 3:
+        show("Today is Wednesday");
+        break;
+
+    default:
+        show("Another day of the week");
+}
+
+</script>
+
+</body>
+</html>
